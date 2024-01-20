@@ -88,7 +88,7 @@ namespace SumData
         public List<ChainedDatabase> ProcessedDatabases { get; }
 
         
-        //esentutl.exe /r svc /a  # ?? need toi test this vs /i for current
+        //esentutl.exe /r svc /a  # ?? need to test this vs /i for current
         //esentutl.exe /p .\Current.mdb
 
         private void ProcessDatabase(string dbFile,int year)
@@ -98,7 +98,8 @@ namespace SumData
             instance.Parameters.SystemDirectory = Path.GetDirectoryName(dbFile);
             //instance.Parameters.BaseName = "SRU";
             instance.Parameters.TempDirectory = Path.GetDirectoryName(dbFile);
-            instance.Parameters.EnableIndexCleanup = true;
+
+            //instance.Parameters.EnableIndexCleanup = true;
 
             //instance.Parameters.Recovery = true;
 
