@@ -42,6 +42,18 @@ namespace SumECmd
 
         [RequiredArgument(1, "csv", "Csv output folder")]
         public string Csv { get; set; }
+
+        [OptionalArgument(true, "wd", "include day level details")]
+        public bool Wd { get; set; }
+
+        [OptionalArgument("yyyy-MM-ddTHH:mm:ss.fffZ", "dt", "date-time format")]
+        public string Dt { get; set; }
+
+        [OptionalArgument(false, "debug", "show debug details")]
+        public bool Debug { get; set; }
+
+        [OptionalArgument(false, "trace", "show trace details")]
+        public bool Trace { get; set; }
     }
 
 
@@ -77,14 +89,13 @@ namespace SumECmd
 
             _args = args;
 
-
             if (!Parser.TryParse(args, out Options options))
             {
                 Parser.DisplayHelp<Options>();
                 return 0;
             }
  
-            DoWork(options.Directory, options.Csv, true, "yyyy-MM-ddTHH:mm:ss.fffZ", false, false);
+            DoWork(options.Directory, options.Csv, options.Wd, options.Dt, options.Debug, options.Trace);
 
             Log.CloseAndFlush();
 
